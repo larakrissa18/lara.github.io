@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Rock+Salt&display=swap" rel="stylesheet">
+    <title>Number System Conversion</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #e10600; /* Red background */
+            color: #fff; /* White text */
+        }
+        header {
+            display: flex;
+            align-items: center;
+            background: #0a0a0a; /* Black header */
+            color: #ffcc00; /* Yellow text */
+            padding: 1rem;
+            border: 2px solid #ffcc00; /* Yellow border around header */
+        }
+        header img {
+            height: 60px; /* Adjust logo size */
+            margin-right: 1rem; /* Space between logo and text */
+        }
+        header h1 {
+            margin: 0;
+            font-size: 1.5rem;
+            flex-grow: 1;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background: #0a0a0a;
+            border: 2px solid #ffcc00; /* Yellow border around navigation */
+        }
+        nav a {
+            color: #ffcc00;
+            text-decoration: none;
+            padding: 1rem;
+            margin: 0 0.5rem;
+            border: 2px solid #ffcc00; /* Add border around links */
+        }
+        nav a:hover {
+            background: #f2f2f2;
+            color: #e10600;
+        }
+        .container {
+            padding: 2rem;
+            max-width: 800px;
+            margin: auto;
+            background-color: #1a1a1a; /* Dark background for container */
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            display: none; /* Hide sections initially */
+            border: 2px solid #ffcc00; /* Yellow border around each section */
+        }
+        h1, h2 {
+            text-align: center;
+        }
+        input, textarea {
+            padding: 0.5rem;
+            margin: 0.5rem 0;
+            width: 100%;
+            box-sizing: border-box;
+            border: 2px solid #ffcc00; /* Yellow border for inputs */
+            border-radius: 4px;
+        }
+        textarea {
+            resize: none;
+        }
+        button {
+            background-color: #ffcc00; /* Yellow button */
+            color: #e10600; /* Red text */
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #f2f2f2; /* Light background */
+            color: #e10600; /* Red text */
+        }
+        .result-box {
+            background-color: #333; /* Dark box background */
+            color: #ffcc00; /* Yellow text */
+            padding: 1rem;
+            margin: 0.5rem 0;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            border: 2px solid #ffcc00; /* Yellow border around result boxes */
+        }
+        footer {
+            text-align: center;
+            padding: 1rem;
+            background: #0a0a0a; /* Black footer */
+            color: white;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            border-top: 2px solid #ffcc00; /* Yellow border on top of footer */
+        }
+        /* Welcome Page Styles */
+        #welcome-page {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url(WOW.png);
+            background-size: cover;
+            flex-direction: column;
+            text-align: center;
+        }
+        #welcome-page h1 {
+            font-family: 'Rock Salt';
+            animation: fadeIn 2s ease-in-out;
+        }
+        #welcome-page p {
+            font-size: 1.8rem;
+            margin-top: 1rem;
+            animation: fadeIn 3s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        .btn-start {
+            background-color: #ffcc00;
+            color: #e10600;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 4px;
+            margin-top: 2rem;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+        .btn-start:hover {
+            background-color: #f2f2f2;
+            color: #e10600;
+        }
+        /* Table Styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        th, td {
+            padding: 1rem;
+            text-align: center;
+            border: 2px solid #ffcc00; /* Yellow border for table cells */
+        }
+        th {
+            background-color: #333; /* Dark background for headers */
+            color: #ffcc00; /* Yellow text */
+        }
+        tr:nth-child(even) {
+            background-color: #444; /* Darker background for even rows */
+        }
+        tr:hover {
+            background-color: #555; /* Hover effect for rows */
+        }
+    </style>
+</head>
+<body>
+    <!-- Welcome Page -->
+    <div id="welcome-page">
+        <h1>Web of number</h1>
+        <p>Explore the web of numbers and convert with ease.</p>
+        <button class="btn-start" onclick="startApp()">Enter</button>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <img src="logo.png" alt="Logo"> 
+        <h1>Number System Conversion</h1>
+    </header>
+    <nav>
+        <a href="javascript:void(0)" onclick="showSection('home')">Home</a>
+        <a href="javascript:void(0)" onclick="showSection('about')">About</a>
+        <a href="javascript:void(0)" onclick="showSection('example')">Example</a>
+        <a href="javascript:void(0)" onclick="showSection('feedback')">Feedback</a>
+    </nav>
+
+    <!-- Home Section -->
+    <div id="home" class="container">
+        <h2>Convert Numbers Between Systems</h2>
+        <label for="number">Enter Number:</label>
+        <input type="number" id="number" placeholder="Enter a number" oninput="convertNumber()" />
+        <h3>Converted Values:</h3>
+        <div id="decimal-box" class="result-box">Decimal: </div>
+        <div id="binary-box" class="result-box">Binary: </div>
+        <div id="octal-box" class="result-box">Octal: </div>
+        <div id="hexadecimal-box" class="result-box">Hexadecimal: </div>
+    </div>
+
+    <!-- About Section -->
+    <div id="about" class="container">
+        <h2>About</h2>
+        <p>
+            This tool brings the power of number system conversions right to your fingertips—making complex calculations simple, fast, and fun for everyone! Inspired by a love for Spider-Man, the design captures the web-slinging hero’s spirit, adding a bit of fun to your conversions.
+        </p>
+    </div>
+
+    <!-- Example Section -->
+    <div id="example" class="container">
+        <h2>Conversion Table Example</h2>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Binary</th>
+                        <th>Decimal</th>
+                        <th>Octal</th>
+                        <th>Hexadecimal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>0001</td><td>1</td><td>1</td><td>1</td></tr>
+                    <tr><td>0010</td><td>2</td><td>2</td><td>2</td></tr>
+                    <tr><td>0011</td><td>3</td><td>3</td><td>3</td></tr>
+                    <tr><td>0100</td><td>4</td><td>4</td><td>4</td></tr>
+                    <tr><td>0101</td><td>5</td><td>5</td><td>5</td></tr>
+                    <tr><td>1010</td><td>10</td><td>12</td><td>A</td></tr>
+                    <tr><td>1100</td><td>12</td><td>14</td><td>C</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Feedback Section -->
+    <div id="feedback" class="container">
+        <h2>Feedback</h2>
+        <form onsubmit="submitFeedback(event)">
+            <label for="name">Name:</label>
+            <input type="text" id="name" required />
+            <label for="feedback">Your Feedback:</label>
+            <textarea id="feedback" required></textarea>
+            <button type="submit">Submit Feedback</button>
+        </form>
+    </div>
+
+    <footer>
+        &copy; Number System Conversion
+    </footer>
+
+    <script>
+        // Show main app after welcome page
+        function startApp() {
+            document.getElementById('welcome-page').style.display = 'none';
+            showSection('home'); // Show the Home section after clicking Start
+        }
+
+        // Function to switch between sections
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('.container');
+            sections.forEach(section => section.style.display = 'none'); // Hide all sections
+            document.getElementById(sectionId).style.display = 'block'; // Show the selected section
+        }
+
+        // Function to perform the number conversion
+        function convertNumber() {
+            const number = document.getElementById('number').value;
+            if (number === '') {
+                document.getElementById('decimal-box').innerText = 'Decimal: ';
+                document.getElementById('binary-box').innerText = 'Binary: ';
+                document.getElementById('octal-box').innerText = 'Octal: ';
+                document.getElementById('hexadecimal-box').innerText = 'Hexadecimal: ';
+                return;
+            }
+            const decimal = parseInt(number, 10);
+            const binary = decimal.toString(2);
+            const octal = decimal.toString(8);
+            const hexadecimal = decimal.toString(16).toUpperCase();
+            document.getElementById('decimal-box').innerText = `Decimal: ${decimal}`;
+            document.getElementById('binary-box').innerText = `Binary: ${binary}`;
+            document.getElementById('octal-box').innerText = `Octal: ${octal}`;
+            document.getElementById('hexadecimal-box').innerText = `Hexadecimal: ${hexadecimal}`;
+        }
+
+        // Submit feedback
+        function submitFeedback(event) {
+            event.preventDefault();
+            alert("Thank you for your feedback!");
+        }
+    </script>
+</body>
+</html>
